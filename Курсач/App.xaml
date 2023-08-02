@@ -1,0 +1,108 @@
+﻿<Application
+    x:Class="Курсач.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:Курсач"
+    StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+
+            <Style x:Key="WindowBackground" TargetType="Window">
+                <Setter Property="Background" Value="Black" />
+            </Style>
+
+            <Style x:Key="MenuItemBackground" TargetType="MenuItem">
+                <Setter Property="Background" Value="#490155" />
+            </Style>
+
+            <Style x:Key="ComboBoxItemBackground" TargetType="ComboBoxItem">
+                <Setter Property="Background" Value="Black" />
+            </Style>
+
+            <DropShadowEffect x:Key="shadow"/>
+
+            <Style x:Key="MainElements" TargetType="FrameworkElement">
+                <Setter Property="ItemsControl.Background" Value="Transparent" />
+                <Setter Property="ItemsControl.Foreground" Value="White" />
+                <Setter Property="ItemsControl.FontSize" Value="15" />
+                <Setter Property="ItemsControl.FontWeight" Value="Bold" />
+                <Setter Property="ItemsControl.BorderBrush" Value="White" />
+            </Style>
+
+            <Style BasedOn="{StaticResource MainElements}" TargetType="Button">
+                <Setter Property="Height" Value="45" />
+                <Setter Property="Width" Value="155" />
+                <Setter Property="HorizontalAlignment" Value="Left" />
+                <Setter Property="Effect" Value="{StaticResource shadow}"/>
+            </Style>
+
+            <Style TargetType="Border">
+                <Setter Property="CornerRadius" Value="7" />
+            </Style>
+
+            <Style BasedOn="{StaticResource MainElements}" TargetType="GroupBox">
+                <Setter Property="Background" Value="#490155" />
+            </Style>
+
+            <Style
+                x:Key="MainTextBlock"
+                BasedOn="{StaticResource MainElements}"
+                TargetType="TextBlock">
+                <Setter Property="TextAlignment" Value="Left" />
+                <Setter Property="Foreground" Value="Black" />
+                <Setter Property="TextWrapping" Value="Wrap" />
+            </Style>
+
+            <Style TargetType="Menu">
+                <Setter Property="Background" Value="Transparent" />
+            </Style>
+
+            <Style BasedOn="{StaticResource MenuItemBackground}" TargetType="MenuItem">
+                <Setter Property="Foreground" Value="White" />
+                <Setter Property="FontSize" Value="15" />
+                <Setter Property="FontWeight" Value="Bold" />
+            </Style>
+
+            <Style BasedOn="{StaticResource MainElements}" TargetType="DataGrid">
+                <Setter Property="Background" Value="#490155" />
+                <Setter Property="Foreground" Value="Black" />
+            </Style>
+
+            <Style BasedOn="{StaticResource ComboBoxItemBackground}" TargetType="ComboBoxItem">
+                <Setter Property="Foreground" Value="White" />
+                <Setter Property="FontSize" Value="15" />
+                <Setter Property="FontWeight" Value="Bold" />
+            </Style>
+
+            <Style BasedOn="{StaticResource MainElements}" TargetType="ComboBox">
+                <Setter Property="Foreground" Value="#490155" />
+                <Setter Property="IsEditable" Value="True" />
+                <Setter Property="IsReadOnly" Value="True" />
+                <Setter Property="HorizontalAlignment" Value="Center" />
+            </Style>
+
+            <Style TargetType="ListView">
+                <Setter Property="Background" Value="#490155" />
+            </Style>
+
+            <Style BasedOn="{StaticResource MainElements}" TargetType="ToolTip">
+                <Setter Property="Background" Value="#490155" />
+            </Style>
+
+            <Style BasedOn="{StaticResource MainElements}" TargetType="TextBox">
+                <Setter Property="TextAlignment" Value="Center" />
+            </Style>
+
+            <Style BasedOn="{StaticResource MainElements}" TargetType="Label">
+                <Setter Property="VerticalAlignment" Value="Center" />
+                <Setter Property="HorizontalAlignment" Value="Center" />
+            </Style>
+
+            <Style BasedOn="{StaticResource MainElements}" TargetType="DatePicker">
+                <Setter Property="HorizontalAlignment" Value="Center" />
+                <Setter Property="Foreground" Value="#490155" />
+            </Style>
+
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

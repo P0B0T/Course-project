@@ -1,0 +1,60 @@
+﻿<Window
+    x:Class="Курсач.AddAndEditWindows.AddAndEditOrdersAccessories"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Курсач.AddAndEditWindows"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Width="227"
+    Background="#490155"
+    Loaded="Window_Loaded"
+    ResizeMode="NoResize"
+    SizeToContent="Height"
+    WindowStartupLocation="CenterScreen"
+    mc:Ignorable="d">
+
+    <StackPanel>
+
+        <Label Content="Клиент:" />
+
+        <ComboBox Name="Client" Width="200" />
+
+        <Label Content="Комплектующее/Запчасть:" />
+
+        <ComboBox Name="Accessory" Width="200" />
+
+        <Label Content="Количество:" />
+
+        <TextBox Name="Quantity" />
+
+        <Label Content="Стоимость:" />
+
+        <TextBox Name="Cost" />
+
+        <Label Content="Дата заказа:" />
+
+        <DatePicker Name="OrderDate" />
+
+        <Label Content="Статус заказа:" />
+
+        <TextBox Name="OrderStatus" />
+
+        <Grid Margin="0,10,0,0">
+
+            <Button
+                Name="AddOrEdit"
+                Width="100"
+                HorizontalAlignment="Left" />
+
+            <Button
+                Name="Exit"
+                Width="100"
+                Margin="110,0,0,0"
+                Click="Exit_Click"
+                Content="Отмена" />
+
+        </Grid>
+
+    </StackPanel>
+
+</Window>
