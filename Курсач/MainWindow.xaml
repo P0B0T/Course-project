@@ -25,7 +25,7 @@
         </Style>
     </Window.Resources>
 
-    <Grid>
+    <Grid Name="OrderGrid">
 
         <Grid Name="AdminGrid" Visibility="Hidden">
 
@@ -300,26 +300,14 @@
                 Name="gbFilter"
                 Grid.Row="2"
                 Width="231"
-                Margin="10,10,0,10"
+                Margin="10,66,0,66"
                 HorizontalAlignment="Left">
                 <Grid>
 
-                    <TextBox Name="tbFilter" Margin="0,10,0,115" />
-
-                    <Button
-                        Name="bFilter"
-                        Margin="0,64,0,64"
-                        HorizontalAlignment="Center"
-                        Click="bFilter_Click"
-                        Content="Отфильтровать" />
-
-                    <Button
-                        Name="Origin"
-                        Width="218"
-                        Margin="0,118,0,10"
-                        HorizontalAlignment="Center"
-                        Click="Origin_Click"
-                        Content="Показать исходную таблицу" />
+                    <TextBox
+                        Name="tbFilter"
+                        Margin="0,10,0,10"
+                        TextChanged="tbFilter_TextChanged" />
 
                 </Grid>
             </GroupBox>
@@ -330,6 +318,7 @@
             Name="GuestGrid"
             Width="400"
             Height="290"
+            Background="Black"
             Visibility="Hidden">
 
             <TextBlock
@@ -457,27 +446,15 @@
             <GroupBox
                 Name="gbFilterStaff"
                 Grid.Row="2"
-                Width="231"
-                Margin="10,10,0,10"
+                Width="230"
+                Margin="0,23,0,110"
                 HorizontalAlignment="Center">
                 <Grid>
 
-                    <TextBox Name="tbFilterStaff" Margin="0,10,0,115" />
-
-                    <Button
-                        Name="bFilterStaff"
-                        Margin="0,64,0,64"
-                        HorizontalAlignment="Center"
-                        Click="bFilterStaff_Click"
-                        Content="Отфильтровать" />
-
-                    <Button
-                        Name="OriginStaff"
-                        Width="218"
-                        Margin="0,118,0,10"
-                        HorizontalAlignment="Center"
-                        Click="OriginStaff_Click"
-                        Content="Показать исходную таблицу" />
+                    <TextBox
+                        Name="tbFilterStaff"
+                        Margin="0,10,0,10"
+                        TextChanged="tbFilterStaff_TextChanged" />
 
                 </Grid>
             </GroupBox>
@@ -594,27 +571,15 @@
             <GroupBox
                 Name="gbFilterClients"
                 Grid.Row="2"
-                Width="231"
-                Margin="10,10,0,10"
+                Width="230"
+                Margin="0,27,0,110"
                 HorizontalAlignment="Center">
                 <Grid>
 
-                    <TextBox Name="tbFilterClients" Margin="0,10,0,115" />
-
-                    <Button
-                        Name="bFilterClients"
-                        Margin="0,64,0,64"
-                        HorizontalAlignment="Center"
-                        Click="bFilterClients_Click"
-                        Content="Отфильтровать" />
-
-                    <Button
-                        Name="OriginClients"
-                        Width="218"
-                        Margin="0,118,0,10"
-                        HorizontalAlignment="Center"
-                        Click="OriginClients_Click"
-                        Content="Показать исходную таблицу" />
+                    <TextBox
+                        Name="tbFilterClients"
+                        Margin="0,10,0,10"
+                        TextChanged="tbFilterClients_TextChanged" />
 
                 </Grid>
             </GroupBox>

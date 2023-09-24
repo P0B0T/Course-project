@@ -74,6 +74,7 @@ namespace Курсач.AddAndEditWindows
             if (Staff.SelectedItem == null) errors.AppendLine("Выберите сотрудника!");
             if (DateIn.Text.Length == 0) errors.AppendLine("Выберите дату приёма!");
             if (DateOut.Text.Length == 0) errors.AppendLine("Введите дату окончания!");
+            if (Convert.ToDateTime(DateOut.Text) < Convert.ToDateTime(DateIn.Text)) errors.AppendLine("Дата окончания не может быть раньше даты приёма!");
             if (!decimal.TryParse(Cost.Text, out decimal cost) || cost <= 0) errors.AppendLine("Введите стоимость ремонта!");
             if (DescriptionProblem.Text.Length == 0) errors.AppendLine("Введите описание проблемы!");
             if (DescriptionWork.Text.Length == 0) errors.AppendLine("Введите описание проделанной работы!");

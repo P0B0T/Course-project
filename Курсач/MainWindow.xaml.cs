@@ -101,6 +101,12 @@ namespace Курсач
             Enter();
         }
 
+        void SearchAndFilterNull()
+        {
+            tbFilter.Text = null;
+            tbSearch.Text = null;
+        }
+
         void RepairsVisible()
         {
             SearchCheck.Parameter = "Repairs";
@@ -109,6 +115,8 @@ namespace Курсач
 
             gbFilter.Visibility = Visibility.Visible;
             gbFilter.Header = "Фильтр по дате заказа";
+
+            SearchAndFilterNull();
 
             db.Клиентыs.Load();
             db.Устройстваs.Load();
@@ -158,6 +166,8 @@ namespace Курсач
 
             gbSearch.Header = "Поиск по ФИО клиента";
 
+            SearchAndFilterNull();
+
             gbFilter.Visibility = Visibility.Hidden;
 
             dgOutput.Columns.Add(new DataGridTextColumn { Binding = new Binding("Фамилия"), Header = "Фамилия" });
@@ -179,6 +189,8 @@ namespace Курсач
             gbFilter.Visibility = Visibility.Visible;
             gbFilter.Header = "Фильтр по типу устройства";
 
+            SearchAndFilterNull();
+
             dgOutput.Visibility = Visibility.Collapsed;
 
             lvOutputDevices.Visibility = Visibility.Visible;
@@ -195,6 +207,8 @@ namespace Курсач
             SearchCheck.Parameter = "Accessories";
 
             gbSearch.Header = "Поиск по названию комплектующего";
+
+            SearchAndFilterNull();
 
             gbFilter.Visibility = Visibility.Visible;
             gbFilter.Header = "Фильтр по названию";
@@ -217,6 +231,8 @@ namespace Курсач
             SearchCheck.Parameter = "OrdersAccessories";
 
             gbSearch.Header = "Поиск по ФИО заказчика";
+
+            SearchAndFilterNull();
 
             gbFilter.Visibility = Visibility.Visible;
             gbFilter.Header = "Фильтр по дате заказа";
@@ -249,6 +265,8 @@ namespace Курсач
 
             gbSearch.Header = "Поиск по названию компании";
 
+            SearchAndFilterNull();
+
             gbFilter.Visibility = Visibility.Hidden;
 
             dgOutput.Columns.Add(new DataGridTextColumn { Binding = new Binding("НазваниеКомпании"), Header = "Название компании" });
@@ -265,6 +283,8 @@ namespace Курсач
             SearchCheck.Parameter = "Staff";
 
             gbSearch.Header = "Поиск по ФИО сотрудника";
+
+            SearchAndFilterNull();
 
             gbFilter.Visibility = Visibility.Visible;
             gbFilter.Header = "Фильтр по должности";
@@ -406,54 +426,9 @@ namespace Курсач
                     break;
             }
         }
-        private void Origin_Click(object sender, RoutedEventArgs e)
+
+        private void tbFilter_TextChanged(object sender, TextChangedEventArgs e)
         {
-            switch (SearchCheck.Parameter)
-            {
-                case "Repairs":
-                    dgOutput.ItemsSource = db.Ремонтыs.ToList();
-                    break;
-
-                case "Clients":
-                    dgOutput.ItemsSource = db.Клиентыs.ToList();
-                    break;
-
-                case "Devices":
-                    lvOutputDevices.ItemsSource = db.Устройстваs.ToList();
-                    break;
-
-                case "Accessories":
-                    dgOutput.ItemsSource = db.КомплектующиеЗапчастиs.ToList();
-                    break;
-
-                case "OrdersAccessories":
-                    dgOutput.ItemsSource = db.ЗаказыКомплектующихs.ToList();
-                    break;
-
-                case "Suppliers":
-                    dgOutput.ItemsSource = db.Поставщикиs.ToList();
-                    break;
-
-                case "Staff":
-                    lvOutputStaff.ItemsSource = db.Сотрудникиs.ToList();
-                    break;
-            }
-        }
-
-        private void bFilter_Click(object sender, RoutedEventArgs e)
-        {
-            if (tbFilter.Text.Length == 0)
-            {
-                MessageWindow message = new MessageWindow();
-                message.View = "Information";
-                message.Title = "Ошибка";
-                message.Icon = BitmapFrame.Create(new Uri("./Icons and pictures/Ошибка.png", UriKind.RelativeOrAbsolute));
-                message.MessageText = "Введите параметр фильтрации!";
-                message.ShowMessageWindow();
-
-                return;
-            }
-
             switch (SearchCheck.Parameter)
             {
                 case "Repairs":
@@ -473,11 +448,11 @@ namespace Курсач
                     break;
 
                 case "Devices":
-                    lvOutputDevices.ItemsSource = db.Устройстваs.Where(d => d.ТипУстройства.ToLower() == tbFilter.Text.ToLower()).ToList();
+                    lvOutputDevices.ItemsSource = db.Устройстваs.Where(d => d.ТипУстройства.ToLower().Contains(tbFilter.Text.ToLower())).ToList();
                     break;
 
                 case "Accessories":
-                    dgOutput.ItemsSource = db.КомплектующиеЗапчастиs.Where(d => d.Название.ToLower() == tbFilter.Text.ToLower()).ToList();
+                    dgOutput.ItemsSource = db.КомплектующиеЗапчастиs.Where(d => d.Название.ToLower().Contains(tbFilter.Text.ToLower())).ToList();
                     break;
 
                 case "OrdersAccessories":
@@ -497,9 +472,10 @@ namespace Курсач
                     break;
 
                 case "Staff":
-                    lvOutputStaff.ItemsSource = db.Сотрудникиs.Where(d => d.Должность.ToLower() == tbFilter.Text.ToLower()).ToList();
+                    lvOutputStaff.ItemsSource = db.Сотрудникиs.Where(d => d.Должность.ToLower().Contains(tbFilter.Text.ToLower())).ToList();
                     break;
             }
+
         }
 
         private void Add_Click(object sender, RoutedEventArgs e)
@@ -830,6 +806,8 @@ namespace Курсач
 
             dgStaffVisibility();
 
+            tbFilterStaff.Text = null;
+
             gbFilterStaff.Header = "Фильтр по дате заказа";
 
             db.Клиентыs.Load();
@@ -851,6 +829,8 @@ namespace Курсач
         {
             SearchCheck.Parameter = "Devices";
 
+            tbFilterStaff.Text = null;
+
             gbFilterStaff.Header = "Фильтр по типу устройства";
 
             dgOutputStaff.Visibility = Visibility.Collapsed;
@@ -866,6 +846,8 @@ namespace Курсач
 
             dgStaffVisibility();
 
+            tbFilterStaff.Text = null;
+
             gbFilterStaff.Header = "Фильтр по названию";
 
             db.Поставщикиs.Load();
@@ -879,20 +861,8 @@ namespace Курсач
             dgOutputStaff.ItemsSource = db.КомплектующиеЗапчастиs.ToList();
         }
 
-        private void bFilterStaff_Click(object sender, RoutedEventArgs e)
+        private void tbFilterStaff_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (tbFilterStaff.Text.Length == 0)
-            {
-                MessageWindow message = new MessageWindow();
-                message.View = "Information";
-                message.Title = "Ошибка";
-                message.Icon = BitmapFrame.Create(new Uri("./Icons and pictures/Ошибка.png", UriKind.RelativeOrAbsolute));
-                message.MessageText = "Введите параметр фильтрации!";
-                message.ShowMessageWindow();
-
-                return;
-            }
-
             switch (SearchCheck.Parameter)
             {
                 case "Repairs":
@@ -912,32 +882,14 @@ namespace Курсач
                     break;
 
                 case "Devices":
-                    lvOutputDevicesStaff.ItemsSource = db.Устройстваs.Where(d => d.ТипУстройства.ToLower() == tbFilterStaff.Text.ToLower()).ToList();
+                    lvOutputDevicesStaff.ItemsSource = db.Устройстваs.Where(d => d.ТипУстройства.ToLower().Contains(tbFilterStaff.Text.ToLower())).ToList();
                     break;
 
                 case "Accessories":
-                    dgOutputStaff.ItemsSource = db.КомплектующиеЗапчастиs.Where(d => d.Название.ToLower() == tbFilterStaff.Text.ToLower()).ToList();
+                    dgOutputStaff.ItemsSource = db.КомплектующиеЗапчастиs.Where(d => d.Название.ToLower().Contains(tbFilterStaff.Text.ToLower())).ToList();
                     break;
             }
-        }
 
-        private void OriginStaff_Click(object sender, RoutedEventArgs e)
-        {
-            switch (SearchCheck.Parameter)
-            {
-                case "Repairs":
-                    dgOutputStaff.ItemsSource = db.Ремонтыs.Where(r => r.КодСотрудникаNavigation.Имя == DataAutorization.Name && r.КодСотрудникаNavigation.Фамилия == DataAutorization.Surname && r.КодСотрудникаNavigation.Отчество == DataAutorization.Patronymic).ToList();
-                    break;
-
-                case "Devices":
-                    lvOutputDevicesStaff.ItemsSource = db.Устройстваs.ToList();
-                    break;
-
-                case "Accessories":
-                    dgOutputStaff.ItemsSource = db.КомплектующиеЗапчастиs.ToList();
-                    break;
-
-            }
         }
 
         void dgClientsVisibility()
@@ -953,6 +905,8 @@ namespace Курсач
             SearchCheck.Parameter = "Repairs";
 
             dgClientsVisibility();
+
+            tbFilterClients.Text = null;
 
             gbFilterClients.Header = "Фильтр по дате заказа";
 
@@ -977,6 +931,8 @@ namespace Курсач
         {
             SearchCheck.Parameter = "Devices";
 
+            tbFilterClients.Text = null;
+
             gbFilterClients.Header = "Фильтр по типу устройства";
 
             dgOutputClients.Visibility = Visibility.Collapsed;
@@ -992,6 +948,8 @@ namespace Курсач
             SearchCheck.Parameter = "OrdersAccessories";
 
             dgClientsVisibility();
+
+            tbFilterClients.Text = null;
 
             gbFilterClients.Header = "Фильтр по дате заказа";
 
@@ -1011,20 +969,8 @@ namespace Курсач
             dgOutputClients.ItemsSource = db.ЗаказыКомплектующихs.Where(o => o.КодКлиентаNavigation.Имя == DataAutorization.Name && o.КодКлиентаNavigation.Фамилия == DataAutorization.Surname && o.КодКлиентаNavigation.Отчество == DataAutorization.Patronymic).ToList();
         }
 
-        private void bFilterClients_Click(object sender, RoutedEventArgs e)
+        private void tbFilterClients_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (tbFilterClients.Text.Length == 0)
-            {
-                MessageWindow message = new MessageWindow();
-                message.View = "Information";
-                message.Title = "Ошибка";
-                message.Icon = BitmapFrame.Create(new Uri("./Icons and pictures/Ошибка.png", UriKind.RelativeOrAbsolute));
-                message.MessageText = "Введите параметр фильтрации!";
-                message.ShowMessageWindow();
-
-                return;
-            }
-
             switch (SearchCheck.Parameter)
             {
                 case "Repairs":
@@ -1044,7 +990,7 @@ namespace Курсач
                     break;
 
                 case "Devices":
-                    lvOutputDevicesClients.ItemsSource = db.Устройстваs.Where(d => d.ТипУстройства.ToLower() == tbFilterClients.Text.ToLower() && d.КодКлиентаNavigation.Имя == DataAutorization.Name && d.КодКлиентаNavigation.Фамилия == DataAutorization.Surname && d.КодКлиентаNavigation.Отчество == DataAutorization.Patronymic).ToList();
+                    lvOutputDevicesClients.ItemsSource = db.Устройстваs.Where(d => d.ТипУстройства.ToLower().Contains(tbFilterClients.Text.ToLower()) && d.КодКлиентаNavigation.Имя == DataAutorization.Name && d.КодКлиентаNavigation.Фамилия == DataAutorization.Surname && d.КодКлиентаNavigation.Отчество == DataAutorization.Patronymic).ToList();
                     break;
 
                 case "OrdersAccessories":
@@ -1063,25 +1009,7 @@ namespace Курсач
                     dgOutputClients.ItemsSource = db.ЗаказыКомплектующихs.Where(d => d.ДатаЗаказа == dateOrders && d.КодКлиентаNavigation.Имя == DataAutorization.Name && d.КодКлиентаNavigation.Фамилия == DataAutorization.Surname && d.КодКлиентаNavigation.Отчество == DataAutorization.Patronymic).ToList();
                     break;
             }
-        }
 
-        private void OriginClients_Click(object sender, RoutedEventArgs e)
-        {
-            switch (SearchCheck.Parameter)
-            {
-                case "Repairs":
-                    dgOutputClients.ItemsSource = db.Ремонтыs.Where(r => r.КодУстройстваNavigation.КодКлиентаNavigation.Имя == DataAutorization.Name && r.КодУстройстваNavigation.КодКлиентаNavigation.Фамилия == DataAutorization.Surname && r.КодУстройстваNavigation.КодКлиентаNavigation.Отчество == DataAutorization.Patronymic).ToList();
-                    break;
-
-                case "Devices":
-                    lvOutputDevicesClients.ItemsSource = db.Устройстваs.Where(d => d.КодКлиентаNavigation.Имя == DataAutorization.Name && d.КодКлиентаNavigation.Фамилия == DataAutorization.Surname && d.КодКлиентаNavigation.Отчество == DataAutorization.Patronymic).ToList();
-                    break;
-
-                case "OrdersAccessories":
-                    dgOutputClients.ItemsSource = db.ЗаказыКомплектующихs.Where(o => o.КодКлиентаNavigation.Имя == DataAutorization.Name && o.КодКлиентаNavigation.Фамилия == DataAutorization.Surname && o.КодКлиентаNavigation.Отчество == DataAutorization.Patronymic).ToList();
-                    break;
-
-            }
         }
     }
 }

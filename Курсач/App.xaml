@@ -12,14 +12,14 @@
             </Style>
 
             <Style x:Key="MenuItemBackground" TargetType="MenuItem">
-                <Setter Property="Background" Value="#490155" />
+                <Setter Property="Background" Value="#30073B" />
             </Style>
 
             <Style x:Key="ComboBoxItemBackground" TargetType="ComboBoxItem">
                 <Setter Property="Background" Value="Black" />
             </Style>
 
-            <DropShadowEffect x:Key="shadow"/>
+            <DropShadowEffect x:Key="shadow" />
 
             <Style x:Key="MainElements" TargetType="FrameworkElement">
                 <Setter Property="ItemsControl.Background" Value="Transparent" />
@@ -33,7 +33,7 @@
                 <Setter Property="Height" Value="45" />
                 <Setter Property="Width" Value="155" />
                 <Setter Property="HorizontalAlignment" Value="Left" />
-                <Setter Property="Effect" Value="{StaticResource shadow}"/>
+                <Setter Property="Effect" Value="{StaticResource shadow}" />
             </Style>
 
             <Style TargetType="Border">
@@ -41,7 +41,7 @@
             </Style>
 
             <Style BasedOn="{StaticResource MainElements}" TargetType="GroupBox">
-                <Setter Property="Background" Value="#490155" />
+                <Setter Property="Background" Value="#30073B" />
             </Style>
 
             <Style
@@ -64,7 +64,7 @@
             </Style>
 
             <Style BasedOn="{StaticResource MainElements}" TargetType="DataGrid">
-                <Setter Property="Background" Value="#490155" />
+                <Setter Property="Background" Value="#30073B" />
                 <Setter Property="Foreground" Value="Black" />
             </Style>
 
@@ -72,21 +72,45 @@
                 <Setter Property="Foreground" Value="White" />
                 <Setter Property="FontSize" Value="15" />
                 <Setter Property="FontWeight" Value="Bold" />
+                <Setter Property="Control.Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="ComboBoxItem">
+                            <Border Background="{TemplateBinding Background}">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
+                                    <Border
+                                        Grid.Row="0"
+                                        Margin="2"
+                                        Background="Black" />
+                                    <ContentPresenter />
+                                </Grid>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="Black" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
             </Style>
 
             <Style BasedOn="{StaticResource MainElements}" TargetType="ComboBox">
-                <Setter Property="Foreground" Value="#490155" />
+                <Setter Property="Foreground" Value="#30073B" />
                 <Setter Property="IsEditable" Value="True" />
                 <Setter Property="IsReadOnly" Value="True" />
                 <Setter Property="HorizontalAlignment" Value="Center" />
             </Style>
 
             <Style TargetType="ListView">
-                <Setter Property="Background" Value="#490155" />
+                <Setter Property="Background" Value="#30073B" />
             </Style>
 
             <Style BasedOn="{StaticResource MainElements}" TargetType="ToolTip">
-                <Setter Property="Background" Value="#490155" />
+                <Setter Property="Background" Value="#30073B" />
             </Style>
 
             <Style BasedOn="{StaticResource MainElements}" TargetType="TextBox">
@@ -100,7 +124,7 @@
 
             <Style BasedOn="{StaticResource MainElements}" TargetType="DatePicker">
                 <Setter Property="HorizontalAlignment" Value="Center" />
-                <Setter Property="Foreground" Value="#490155" />
+                <Setter Property="Foreground" Value="#30073B" />
             </Style>
 
         </ResourceDictionary>

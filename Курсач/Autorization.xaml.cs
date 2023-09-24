@@ -46,7 +46,7 @@ namespace Курсач
 
             var staff = db.Сотрудникиs.Where(s => s.Логин == Login.Text && s.Пароль == Password.Password);
 
-            if (client.Count() == 1)
+            if (client.Count() == 1 && client.First().Логин == Login.Text && client.First().Пароль == Password.Password)
             {
                 DataAutorization.Login = true;
                 DataAutorization.Surname = client.First().Фамилия;
@@ -55,7 +55,7 @@ namespace Курсач
                 DataAutorization.Right = client.First().КодРолиNavigation.Роль;
                 Close();
             }
-            else if (staff.Count() == 1)
+            else if (staff.Count() == 1 && staff.First().Логин == Login.Text && staff.First().Пароль == Password.Password)
             {
                 DataAutorization.Login = true;
                 DataAutorization.Surname = staff.First().Фамилия;
