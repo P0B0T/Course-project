@@ -70,11 +70,14 @@ namespace Курсач.AddAndEditWindows
         {
             StringBuilder errors = new StringBuilder();
 
+            DateTime.TryParse(DateOut.Text, out DateTime dateOut);
+            DateTime.TryParse(DateIn.Text, out DateTime dateIn);
+
             if (Devices.SelectedItem == null) errors.AppendLine("Выберите устройство!");
             if (Staff.SelectedItem == null) errors.AppendLine("Выберите сотрудника!");
             if (DateIn.Text.Length == 0) errors.AppendLine("Выберите дату приёма!");
             if (DateOut.Text.Length == 0) errors.AppendLine("Введите дату окончания!");
-            if (Convert.ToDateTime(DateOut.Text) < Convert.ToDateTime(DateIn.Text)) errors.AppendLine("Дата окончания не может быть раньше даты приёма!");
+            if (dateOut < dateIn) errors.AppendLine("Дата окончания не может быть раньше даты приёма!");
             if (!decimal.TryParse(Cost.Text, out decimal cost) || cost <= 0) errors.AppendLine("Введите стоимость ремонта!");
             if (DescriptionProblem.Text.Length == 0) errors.AppendLine("Введите описание проблемы!");
             if (DescriptionWork.Text.Length == 0) errors.AppendLine("Введите описание проделанной работы!");
@@ -93,8 +96,8 @@ namespace Курсач.AddAndEditWindows
 
             repair.КодУстройства = ((Устройства)Devices.SelectedItem).Код;
             repair.КодСотрудника = ((Сотрудники)Staff.SelectedItem).Код;
-            repair.ДатаПриёма = Convert.ToDateTime(DateIn.Text);
-            repair.ДатаОкончания = Convert.ToDateTime(DateOut.Text);
+            repair.ДатаПриёма = dateIn;
+            repair.ДатаОкончания = dateOut;
             repair.СтоимостьРемонта = cost;
             repair.ОписаниеПроблемы = DescriptionProblem.Text;
             repair.ОписаниеПроделаннойРаботы = DescriptionWork.Text;

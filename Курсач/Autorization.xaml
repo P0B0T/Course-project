@@ -15,7 +15,7 @@
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
 
-    <Grid Background="Black">
+    <Grid>
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
